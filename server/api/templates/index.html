@@ -6,45 +6,30 @@
     <title>pyRD</title>
   </head>
   <body>
-    <img src="" alt="Dynamic Image" />
+    <img src="" />
   </body>
+  <!--<script type="text/javascript" src="{{ url_for('static', filename='index.js') }}"></script>-->
   <script type="text/javascript">
     const KEY = prompt("Key:");
 
     const img = document.querySelector("img");
-    var filename = "file_session1.png"; // Default filename
 
+    var filename = "undefined"; // keep it string
     const loop = () => {
-      fetch("https://ij53sf8rf6.execute-api.ap-south-1.amazonaws.com/dev", {
+      fetch("./rd", {
         method: "POST",
         headers: {
           Accept: "application/json",
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({
-          httpMethod: "POST",
-          path: "/rd",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ _key: KEY, filename: filename }),
-          isBase64Encoded: false,
-          queryStringParameters: {},
-        }),
+        body: JSON.stringify({ __: Date.now(), filename: filename, _key: KEY }),
       })
         .then(function (response) {
-          // Check if the response is okay (status code in the range 200-299)
-          if (!response.ok) {
-            throw new Error(
-              "Network response was not ok: " + response.statusText
-            );
-          }
-
-          // Get the new filename from headers (if your API sends it back in the headers)
-          filename = response.headers.get("filename") || filename; // fallback to current filename if not present
+          filename = response.headers.get("filename");
           return response.blob();
         })
         .then(function (myBlob) {
+          //console.log(myBlob)
           if (myBlob.size) {
             var objectURL = URL.createObjectURL(myBlob);
             img.src = objectURL;
@@ -52,13 +37,12 @@
             console.log("img not change");
           }
         })
-        .catch((err) => console.error("Fetch error:", err));
+        .catch((err) => console.error(err));
     };
 
-    // Call the loop function at intervals
     var setIntervalId = window.setInterval(loop, 500);
 
-    // Function to post events
+    //'click mousemove keypress drag mousewheel mousedown mouseup'
     var postEvent = (payload) => {
       console.log(payload);
       payload._key = KEY;
@@ -73,9 +57,8 @@
       };
     };
 
-    // Event listeners for image click and keydown
     img.addEventListener("click", (event) => {
-      const payload = {
+      payload = {
         type: event.type,
         x: event.clientX,
         y: event.clientY,
@@ -84,7 +67,7 @@
     });
 
     document.onkeydown = (event) => {
-      const payload = {
+      payload = {
         type: event.type,
         ctrlKey: event.ctrlKey,
         altKey: event.altKey,
