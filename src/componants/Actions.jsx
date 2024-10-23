@@ -81,6 +81,7 @@ const RemoteDesktopCard = () => {
         <div 
           className="absolute top-20 right-0 w-96 bg-white/10 backdrop-blur-lg rounded-xl shadow-2xl border border-white/10 p-8 transform transition-all duration-300"
         >
+          
           {isAuthenticated ? (
             <>
               <div className="flex items-center gap-4 mb-4 pb-4 border-b border-white/10">
