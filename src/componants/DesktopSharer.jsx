@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 const generateUniqueId = () => {
   const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
@@ -23,11 +23,45 @@ const DesktopSharer = ({ onSelect }) => {
     "Your desktop will be shared."
   ];
 
+  useEffect(() => {
+    const storedId = localStorage.getItem('uniqueId');
+    const storedTime = localStorage.getItem('uniqueIdTime');
+
+    // Get the current time
+    const currentTime = Date.now();
+
+    if (storedId && storedTime) {
+      // Check if the unique ID is older than 20 minutes
+      if (currentTime - storedTime < 1200000) {
+        setUniqueId(storedId);
+      } else {
+        const newId = generateUniqueId();
+        setUniqueId(newId);
+        localStorage.setItem('uniqueId', newId);
+        localStorage.setItem('uniqueIdTime', currentTime);
+      }
+    } else {
+      const newId = generateUniqueId();
+      setUniqueId(newId);
+      localStorage.setItem('uniqueId', newId);
+      localStorage.setItem('uniqueIdTime', currentTime);
+    }
+
+    // Set interval to change the ID every 20 minutes
+    const intervalId = setInterval(() => {
+      const newId = generateUniqueId();
+      setUniqueId(newId);
+      localStorage.setItem('uniqueId', newId);
+      localStorage.setItem('uniqueIdTime', Date.now());
+    }, 1200000); // 20 minutes in milliseconds
+
+    // Clear interval on component unmount
+    return () => clearInterval(intervalId);
+  }, []);
+
   const handleConnect = () => {
     setIsConnecting(true);
     setAnimationPhase(1);
-    const id = generateUniqueId();
-    setUniqueId(id);
 
     // Phase 1: Initial connection animation
     setTimeout(() => {
@@ -51,17 +85,20 @@ const DesktopSharer = ({ onSelect }) => {
     setShowRoleCard(false);
   };
 
+  const handleProceed = () => {
+    // Redirect to the existing unique ID without creating a new one
+    window.location.href = `/remote-desktop/${uniqueId}`; // Use uniqueId instead of storedId
+  };
+
   return (
     <div className="flex flex-col items-center space-y-8 p-4">
       <button
         onClick={handleConnect}
-        className={`
-          relative overflow-hidden
+        className={`relative overflow-hidden
           bg-red-500 text-white px-12 py-4 rounded-xl shadow-lg 
           hover:bg-red-600 transition-all duration-300 
           w-full md:w-auto text-xl md:text-2xl
-          ${isConnecting ? 'cursor-not-allowed opacity-75' : 'hover:scale-105'}
-        `}
+          ${isConnecting ? 'cursor-not-allowed opacity-75' : 'hover:scale-105'}`}
         disabled={isConnecting}
       >
         <span className={`transition-opacity duration-300 ${isConnecting ? 'opacity-0' : 'opacity-100'}`}>
@@ -77,26 +114,23 @@ const DesktopSharer = ({ onSelect }) => {
       {isConnecting && (
         <div className="flex flex-col items-center space-y-4">
           <div className="relative">
-            <div className={`
-              absolute inset-0 rounded-full border-4 border-blue-500 
+            <div className={`absolute inset-0 rounded-full border-4 border-blue-500 
               animate-[spin_3s_linear_infinite] 
               transition-all duration-500
-              ${animationPhase >= 1 ? 'opacity-100 scale-100' : 'opacity-0 scale-0'}
-            `}></div>
+              ${animationPhase >= 1 ? 'opacity-100 scale-100' : 'opacity-0 scale-0'}`}
+            ></div>
             
-            <div className={`
-              h-16 w-16 rounded-full bg-blue-500
+            <div className={`h-16 w-16 rounded-full bg-blue-500
               animate-[pulse_1s_ease-in-out_infinite]
               transition-all duration-500
-              ${animationPhase >= 2 ? 'opacity-100 scale-100' : 'opacity-0 scale-0'}
-            `}></div>
+              ${animationPhase >= 2 ? 'opacity-100 scale-100' : 'opacity-0 scale-0'}`}
+            ></div>
 
-            <div className={`
-              absolute inset-0 flex items-center justify-center
+            <div className={`absolute inset-0 flex items-center justify-center
               text-4xl text-white
               transition-all duration-500
-              ${animationPhase >= 3 ? 'opacity-100 scale-100' : 'opacity-0 scale-0'}
-            `}>
+              ${animationPhase >= 3 ? 'opacity-100 scale-100' : 'opacity-0 scale-0'}`}
+            >
               ✓
             </div>
           </div>
@@ -111,7 +145,7 @@ const DesktopSharer = ({ onSelect }) => {
       {showRoleCard && (
         <div className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50 backdrop-blur-sm transition-all duration-500">
           <div className="bg-white bg-opacity-90 rounded-xl p-8 md:p-16 shadow-2xl w-full max-w-3xl mx-4 md:mx-0 relative
-                        transform transition-all duration-500 animate-[slideIn_0.5s_ease-out]">
+                          transform transition-all duration-500 animate-[slideIn_0.5s_ease-out]">
             <button
               onClick={closeRoleCard}
               className="absolute top-4 right-4 text-gray-700 hover:text-red-500 transition duration-300 text-2xl"
@@ -134,7 +168,7 @@ const DesktopSharer = ({ onSelect }) => {
             </ul>
             <div className="flex justify-end mt-8 md:mt-12">
               <button
-                onClick={() => window.location.href = `/remote-desktop/${uniqueId}`}
+                onClick={handleProceed}
                 className="bg-blue-500 text-white px-8 py-4 rounded-lg shadow-lg hover:bg-blue-600 transition duration-300 text-xl md:text-2xl"
               >
                 Proceed

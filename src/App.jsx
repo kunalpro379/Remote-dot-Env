@@ -4,6 +4,8 @@ import './App.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'; // Import Router components
 import RemoteDesktopCard from './componants/Actions'; // Adjust the import path if needed
 import RemoteDesktopPage from './pages/RemoteDesktopPage'; // Adjust the import path if needed
+import FileDownload from './componants/RemoteDesktop/download_remotehost/downaload_host';// src/App.js
+
 
 function App() {
   return (
@@ -12,6 +14,7 @@ function App() {
         <Routes>
           <Route path="/" element={<RemoteDesktopCard />} />
           <Route path="/remote-desktop" element={<RemoteDesktopPage />} />
+          <Route path="/hello" element={<FileDownload />} /> {/* Use 'element' instead of 'component' */}
         </Routes>
       </div>
     </Router>
@@ -19,3 +22,4 @@ function App() {
 }
 
 export default App;
+
