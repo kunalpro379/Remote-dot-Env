@@ -1,3 +1,5 @@
+//This is removed from project
+
 // RemoteDesktopPage.jsx
 import React, { useState, useEffect } from 'react';
 import DesktopSharer from '../componants/DesktopSharer';
@@ -42,7 +44,6 @@ const RemoteDesktopPage = () => {
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen">
-      {/* User Information Section */}
       <div className="mb-12 text-center p-12 bg-black rounded-lg shadow-lg w-full max-w-2xl">
         <h2 className="text-4xl font-bold text-green-600">Welcome, {userInfo.username}!</h2>
         <p className="mt-4 text-green-500 text-2xl">Here are your details:</p>

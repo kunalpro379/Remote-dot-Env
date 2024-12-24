@@ -1,37 +1,52 @@
-import React, {createContext, useContext,useState}from 'react';
+import React, { useState } from "react";
+import Cookies from "js-cookie";
 
-///create the auth context
-const AuthContext=createContext();
-//create a custom hook to use AUth Context
-export const useAuth=()=>{
-    return useContext(AuthContext);
-}
-//create AuthProvider componant
+const AuthContext = React.createContext();
 
-export const AuthProvider=({children})=>{
-    //holding user data
-    const [user, setuser]=useState(null);
-    //state for errors
-    const [error, setError]=useState('');
-    //success
-    const [success, setSuccess]=useState('');
+export const AuthProvider = ({ children }) => {
+    const [authState, setAuthState] = useState({
+        isAuthenticated: false,
+        user: null,
+        token: null
+    });
 
-    //fun to log in user
-    const login=(userData)=>{
-        //set the userdata in state
-        setuser(userData);
-        localStorage.setItem('user', jSON.stringify(userData));
-        setSuccess('login Successfull!');
+    const setAuthInfo = (token, user) => {
+        setAuthState({
+            isAuthenticated: true,
+            user: user,
+            token: token
+        });
+        Cookies.set("token", token, { httpOnly: true });
+        console.log('authcontext', token);
+        //decode the token for expiry 
+        const decodedToken=JSON.parse(atob(token.split('.')[1]));
+        console.log(decodedToken);
+        const expirationTime=decodedToken.exp*1000;//ms
+        //timeout
+        const currentTime= Date.now();
+        const timeUntilExpiration=expirationTime-currentTime;
+        setTimeout(()=>{
+            logout();
+            console.log('"Session expired. Please log in again.');
+
+        }, timeUntilExpiration);
+         
     };
-    const logout=()=>{
-        setuser(null);
-        localStorage.removeItem('user');
-        setSuccess('Logout Successfull!');
-    };
-    handleSignup(userData);
 
-    //provide context vals to children componants
-return(
-    <AuthContext.Provider value={{user, error, success, login, logout,handleSignup}}>{children}</AuthContext.Provider>
-);
+    const logout = () => {
+        setAuthState({
+            isAuthenticated: false,
+            user: null,
+            token: null
+        });
+        Cookies.remove("token");
+    };
+
+    return (
+        <AuthContext.Provider value={{ authState, setAuthInfo, logout }}>
+            {children}
+        </AuthContext.Provider>
+    );
 };
+
+export const useAuth = () => React.useContext(AuthContext);

@@ -1,1 +1,74 @@
-[{"title": "Remote Desktop", "description": "Control another computer remotely, as if you were sitting right in front of it.", "path": "/remote-desktop", "icon": "Monitor", "color": "bg-purple-500"},{"title": "Deployfy - Effortless Frontend Deployment", "description": "Deploy Your Frontend Project easily in Minutes with Deployfy.", "path": "/deployfy", "icon": "Monitor", "color": "bg-red-500"},{"title": "File Sharing", "description": "Share files easily and quickly between connected computers.", "path": "/file-sharing", "icon": "Share", "color": "bg-blue-500"},{"title": "Private Coding Environment", "description": "Your personal sanctuary for coding and development.", "path": "/private-coding", "icon": "Code", "color": "bg-green-500"},{"title": "Collaborative Coding", "description": "Code together in real-time with audio-video support.", "path": "/collab-coding", "icon": "Users", "color": "bg-yellow-500"},{"title": "Meeting Handler", "description": "Manage your virtual meetings efficiently.", "path": "/meetings", "icon": "Video", "color": "bg-red-500"},{"title": "Live Streaming Service", "description": "Broadcast your screen or video feed to a wide audience in real-time.", "path": "/live-streaming", "icon": "CameraIcon", "color": "bg-orange-500"},{"title": "Virtual Whiteboard", "description": "Collaborate visually with an interactive whiteboard.", "path": "/whiteboard", "icon": "Clipboard", "color": "bg-indigo-500"},{"title": "MyRedis", "description": "Manage and monitor Redis databases with ease.", "path": "/myredis", "icon": "Database", "color": "bg-cyan-500"},{"title": "DNS Server", "description": "Manage your custom DNS records effortlessly.", "path": "/dns-server", "icon": "Globe2Icon", "color": "bg-blue-600"},{"title": "TextPad", "description": "Simple yet powerful text editing tool.", "path": "/textpad", "icon": "FileText", "color": "bg-teal-500"},{"title": "Dynamic Reverse Proxy Service", "description": "Easily route incoming traffic to different services.", "path": "/reverse-proxy", "icon": "Share", "color": "bg-gray-500"},{"title": "Remote Desktop Card", "description": "View and manage your remote desktop connections.", "path": "/remote-desktop-card", "icon": "Monitor", "color": "bg-purple-500"}]
+[
+    {
+        "title": "Remote Desktop",
+        "description": "Control another computer remotely, as if you were sitting right in front of it.",
+        "info": "This feature allows you to take full control of a remote desktop, enabling you to work on applications, access files, and perform tasks on another computer.",
+        "path": "/remote-desktop",
+        "icon": "Monitor",
+        "color": "bg-purple-500"
+    },
+    {
+        "title": "Deployfy : Frontend Deployment",
+        "description": "Deploy Your Frontend Project easily in Minutes with Deployfy.",
+        "info": "Deployfy simplifies the deployment process, allowing developers to push their frontend projects live with just a few clicks.",
+        "path": "/deployfy",
+        "icon": "Monitor",
+        "color": "bg-red-500"
+    },
+    {
+        "title": "File Sharing",
+        "description": "Securely Share files easily and quickly between connected users.",
+        "info": "This feature allows users to send and receive files without storing them permanently on the remote system, perfect for quick transfers.",
+        "path": "/file-sharing",
+        "icon": "Share",
+        "color": "bg-blue-500"
+    },
+    {
+        "title": "Private Coding Environment",
+        "description": "Your personal sanctuary for coding and development.",
+        "info": "A secure, isolated environment for your coding needs with full IDE capabilities, ensuring privacy and focus.",
+        "path": "/private-coding",
+        "icon": "Code",
+        "color": "bg-green-500"
+    },
+    {
+        "title": "Collaborative Coding",
+        "description": "Code together in real-time with audio-video support.",
+        "info": "This feature provides a full-featured collaborative environment with code execution, canvas, chat, and video calls.",
+        "path": "/collab-coding",
+        "icon": "Users",
+        "color": "bg-yellow-500"
+    },
+    {
+        "title": "Meeting Handler",
+        "description": "Manage your virtual meetings efficiently.",
+        "info": "Comprehensive meeting management with scheduling and participation features to enhance productivity.",
+        "path": "/meetings",
+        "icon": "Video",
+        "color": "bg-red-500"
+    },
+    {
+        "title": "Live Streaming Service",
+        "description": "Broadcast your screen or video feed to a wide audience in real-time.",
+        "info": "This feature allows users to share their screen or video with an audience, making it ideal for presentations and tutorials.",
+        "path": "/live-streaming",
+        "icon": "CameraIcon",
+        "color": "bg-orange-500"
+    },
+    {
+        "title": "Virtual Whiteboard",
+        "description": "Collaborate visually with an interactive whiteboard.",
+        "info": "Real-time collaborative drawing and diagramming tool for brainstorming sessions and visual presentations.",
+        "path": "/whiteboard",
+        "icon": "Clipboard",
+        "color": "bg-indigo-500"
+    },
+    {
+        "title": "TextPad",
+        "description": "Simple yet powerful text editing tool.",
+        "info": "A feature-rich text editor for all your writing needs, offering syntax highlighting and various formatting options.",
+        "path": "/textpad",
+        "icon": "FileText",
+        "color": "bg-teal-500"
+    }
+]

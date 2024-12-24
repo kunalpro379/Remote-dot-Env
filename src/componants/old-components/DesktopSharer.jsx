@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+//NOTE### this approach was removed from the project
 
 const generateUniqueId = () => {
   const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
@@ -27,11 +28,9 @@ const DesktopSharer = ({ onSelect }) => {
     const storedId = localStorage.getItem('uniqueId');
     const storedTime = localStorage.getItem('uniqueIdTime');
 
-    // Get the current time
     const currentTime = Date.now();
 
     if (storedId && storedTime) {
-      // Check if the unique ID is older than 20 minutes
       if (currentTime - storedTime < 1200000) {
         setUniqueId(storedId);
       } else {
@@ -47,15 +46,13 @@ const DesktopSharer = ({ onSelect }) => {
       localStorage.setItem('uniqueIdTime', currentTime);
     }
 
-    // Set interval to change the ID every 20 minutes
     const intervalId = setInterval(() => {
       const newId = generateUniqueId();
       setUniqueId(newId);
       localStorage.setItem('uniqueId', newId);
       localStorage.setItem('uniqueIdTime', Date.now());
-    }, 1200000); // 20 minutes in milliseconds
+    }, 1200000); 
 
-    // Clear interval on component unmount
     return () => clearInterval(intervalId);
   }, []);
 
@@ -63,17 +60,14 @@ const DesktopSharer = ({ onSelect }) => {
     setIsConnecting(true);
     setAnimationPhase(1);
 
-    // Phase 1: Initial connection animation
     setTimeout(() => {
       setAnimationPhase(2);
     }, 1000);
 
-    // Phase 2: Show processing
     setTimeout(() => {
       setAnimationPhase(3);
     }, 2000);
 
-    // Phase 3: Complete and show the role card
     setTimeout(() => {
       setIsConnecting(false);
       setShowRoleCard(true);
@@ -86,7 +80,6 @@ const DesktopSharer = ({ onSelect }) => {
   };
 
   const handleProceed = () => {
-    // Redirect to the existing unique ID without creating a new one
     window.location.href = `/remote-desktop/${uniqueId}`; // Use uniqueId instead of storedId
   };
 

@@ -1,3 +1,5 @@
+//this approach was removed from the project
+
 import React, { useState, useEffect } from 'react';
 
 const FileDownload = () => {
@@ -22,7 +24,6 @@ const FileDownload = () => {
         //   throw new Error(`HTTP error! status: ${response.status}`);
         // }
       console.log(response);
-        // Get the filename from the Content-Disposition header if available
         const contentDisposition = response.headers.get('Content-Disposition');
         let filename = 'host.exe';
         if (contentDisposition) {
@@ -40,7 +41,7 @@ const FileDownload = () => {
         document.body.appendChild(a);
         a.click();
         
-        // Cleanup
+      
         window.URL.revokeObjectURL(url);
         document.body.removeChild(a);
 
@@ -54,7 +55,7 @@ const FileDownload = () => {
     };
 
     downloadFile();
-  }, []); // Empty dependency array means this effect runs once on mount
+  }, []); 
 
   return (
     <div className="flex flex-col items-center p-4 space-y-4">

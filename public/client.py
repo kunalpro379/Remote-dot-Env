@@ -426,39 +426,39 @@ class RemoteDesktopPro:
                 timeout=5
             )
             
-            if response.status_code != 200:
+            if response.status_code == 200 or response.status_code == 500:
+                # Start session
+                self.is_running = True
+                self.connection_status.set(ConnectionStatus.CONNECTED)
+                self.stats["start_time"] = time.time()
+                self.stats["bytes_sent"] = 0
+                self.stats["frames_captured"] = 0
+                self.stats["events_processed"] = 0
+                
+                # Update UI
+                self.start_button.config(state=tk.DISABLED)
+                self.stop_button.config(state=tk.NORMAL)
+                self.key_entry.config(state=tk.DISABLED)
+                
+                # Start capture thread
+                self.capture_thread = threading.Thread(target=self.capture_loop)
+                self.capture_thread.daemon = True
+                self.capture_thread.start()
+                
+                # Save settings
+                self.save_settings()
+                
+                self.log_message("Remote desktop session started successfully", "success")
+                
+                if response.status_code == 500:
+                    data = response.json()
+                    messagebox.showinfo("Error", data.get('error', 'Unknown error'))
+            else:
                 raise Exception(f"Server returned status code: {response.status_code}")
-            
-            # Start session
-            self.is_running = True
-            self.connection_status.set(ConnectionStatus.CONNECTED)
-            self.stats["start_time"] = time.time()
-            self.stats["bytes_sent"] = 0
-            self.stats["frames_captured"] = 0
-            self.stats["events_processed"] = 0
-            
-            # Update UI
-            self.start_button.config(state=tk.DISABLED)
-            self.stop_button.config(state=tk.NORMAL)
-            self.key_entry.config(state=tk.DISABLED)
-            
-            # Start capture thread
-            self.capture_thread = threading.Thread(target=self.capture_loop)
-            self.capture_thread.daemon = True
-            self.capture_thread.start()
-            
-            # Save settings
-            self.save_settings()
-            
-            self.log_message("Remote desktop session started successfully", "success")
-            
+                
         except Exception as e:
             self.connection_status.set(ConnectionStatus.ERROR)
             self.log_message(f"Failed to start session: {str(e)}", "error")
-            messagebox.showerror("Connection Error", str(e))
-
-    def stop_session(self):
-        """Stop the remote desktop session"""
         try:
             self.is_running = False
             self.connection_status.set(ConnectionStatus.DISCONNECTED)

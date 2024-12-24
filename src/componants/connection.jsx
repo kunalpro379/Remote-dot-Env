@@ -1,6 +1,7 @@
 import React, { useState, useCallback } from 'react';
 import { Share2, Copy, Loader2, Send, Download } from 'lucide-react';
 import useSubscriptionReceiver from './hooks/SubscriptionHook'; // Ensure this path is correct
+//NOTE### this approach was removed from the project
 
 const FileShareCard = () => {
   const [generatedCode, setGeneratedCode] = useState('');

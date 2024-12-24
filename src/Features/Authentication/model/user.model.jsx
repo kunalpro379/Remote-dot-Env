@@ -1,4 +1,4 @@
-export class User{
+ class User{
     constructor(data, operation){
         this.operation=operation;//signup or signin
         this.username=data.username;
@@ -19,8 +19,7 @@ export class User{
         if(this.operation=='signup'){
             return (
                 this.username.length>0&&
-                this.email.include('@')&&
-                this.password.length>0&&
+                this.email.includes('@') &&                this.password.length>0&&
                 this.gender.length>0&&
                 this.phonenumber.length>0||
                 this.name.length>0||
@@ -49,4 +48,4 @@ export class User{
 
     
     }
-}
+}export default User;

@@ -1,7 +1,7 @@
 import React from 'react';
 
 const CustomDialog = ({ isOpen, onClose, children, className = '' }) => {
-  if (!isOpen) return null; // Do not render the dialog if it's not open
+  if (!isOpen) return null; 
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">

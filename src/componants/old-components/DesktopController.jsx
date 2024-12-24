@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+//NOTE### this approach was removed from the project
 
 const DesktopController = ({ onSelect }) => {
   const [isConnecting, setIsConnecting] = useState(false);
@@ -28,17 +29,14 @@ const DesktopController = ({ onSelect }) => {
     setIsConnecting(true);
     setAnimationPhase(1);
 
-    // Phase 1: Initial connection animation
     setTimeout(() => {
       setAnimationPhase(2);
     }, 1000);
 
-    // Phase 2: Show processing
     setTimeout(() => {
       setAnimationPhase(3);
     }, 2000);
 
-    // Phase 3: Complete and show the role card
     setTimeout(() => {
       setIsConnecting(false);
       setShowRoleCard(true);
