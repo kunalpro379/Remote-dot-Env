@@ -1,5 +1,5 @@
 import React from "react";
-import FormInput from "./FormInput.jsx";
+import FormInput from "./formInput.jsx";
 
 const SignupForm = ({
     signupName,
