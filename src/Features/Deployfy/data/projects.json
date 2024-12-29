@@ -1,0 +1,66 @@
+[
+  {
+    "name": "Project 1",
+    "repo": "https://github.com/user/project1",
+    "url": "https://project1.example.com",
+    "latestCommit": "Fixed bug in authentication",
+    "timestamp": "4d ago on ",
+    "branch": "main"
+  },
+  {
+    "name": "Project 2",
+    "repo": "https://github.com/user/project2",
+    "url": "https://project2.example.com",
+    "latestCommit": "Added new feature",
+    "timestamp": "2d ago on ",
+    "branch": "develop"
+  },
+  {
+    "name": "Project 3",
+    "repo": "https://github.com/user/project3",
+    "url": "https://project3.example.com",
+    "latestCommit": "Updated documentation",
+    "timestamp": "1d ago on ",
+    "branch": "main"
+  },
+  {
+    "name": "Project 4",
+    "repo": "https://github.com/user/project4",
+    "url": "https://project4.example.com",
+    "latestCommit": "Refactored codebase",
+    "timestamp": "5d ago on ",
+    "branch": "master"
+  },
+  {
+    "name": "Project 1",
+    "repo": "https://github.com/user/project1",
+    "url": "https://project1.example.com",
+    "latestCommit": "Fixed bug in authentication",
+    "timestamp": "4d ago on ",
+    "branch": "main"
+  },
+  {
+    "name": "Project 2",
+    "repo": "https://github.com/user/project2",
+    "url": "https://project2.example.com",
+    "latestCommit": "Added new feature",
+    "timestamp": "2d ago on ",
+    "branch": "develop"
+  },
+  {
+    "name": "Project 3",
+    "repo": "https://github.com/user/project3",
+    "url": "https://project3.example.com",
+    "latestCommit": "Updated documentation",
+    "timestamp": "1d ago on ",
+    "branch": "main"
+  },
+  {
+    "name": "Project 4",
+    "repo": "https://github.com/user/project4",
+    "url": "https://project4.example.com",
+    "latestCommit": "Refactored codebase",
+    "timestamp": "5d ago on ",
+    "branch": "master"
+  }
+]

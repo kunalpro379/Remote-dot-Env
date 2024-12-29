@@ -1,0 +1,53 @@
+.card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  background: linear-gradient(270deg, #131d34, #000000); /* Gradient background */
+  border: 2px solid;
+  border-image: linear-gradient(to right, #ffffff) 1; /* Gradient border */
+  border-radius: 2px; /* Border radius of 2px */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.card-content {
+  flex: 1;
+}
+
+.card-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #fff;
+}
+
+.card-description {
+  font-size: 1rem;
+  color: #9ca3af;
+}
+
+.card-arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #374151; /* Darker background for the arrow */
+  transition: box-shadow 0.3s ease;
+}
+
+.card-arrow:hover {
+  box-shadow: 0 0 10px 5px rgba(255, 255, 255, 0.5); /* Light effect around the arrow */
+}
+
+.arrow-icon {
+  color: #fff;
+  width: 24px;
+  height: 24px;
+}

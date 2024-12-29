@@ -2,7 +2,7 @@
 import React from "react";
 import { Mail, Lock, User, Settings, LogOut, AlertCircle } from "react-feather";
 
-const ProfileAvatar = ({ isAuthenticated, mockUser, showProfileDropdown, setShowProfileDropdown, setShowLoginModal, setShowSignupModal, setIsAuthenticated }) => (
+const ProfileAvatar = ({ logout, isAuthenticated, mockUser, showProfileDropdown, setShowProfileDropdown, setShowLoginModal, setShowSignupModal, setIsAuthenticated }) => (
   <div className="relative">
     <button
       onClick={() => setShowProfileDropdown(!showProfileDropdown)}
@@ -10,7 +10,7 @@ const ProfileAvatar = ({ isAuthenticated, mockUser, showProfileDropdown, setShow
         flex items-center justify-center hover:scale-110 hover:bg-blue-600 transition-all duration-300`}
     >
       <span className="text-2xl font-bold text-white">
-        {isAuthenticated ? mockUser.name[0] : "?"}
+        {isAuthenticated ? (mockUser.username ? mockUser.username[0] : "?") : "?"}
       </span>
     </button>
     
@@ -22,10 +22,10 @@ const ProfileAvatar = ({ isAuthenticated, mockUser, showProfileDropdown, setShow
           <>
             <div className="flex items-center gap-4 mb-4 pb-4 border-b border-white/10">
               <div className="w-16 h-16 rounded-full bg-purple-500 flex items-center justify-center">
-                <span className="text-2xl font-bold text-white">{mockUser.name[0]}</span>
+                <span className="text-2xl font-bold text-white">{mockUser.username ? mockUser.username[0].toUpperCase() : "?"}</span>
               </div>
               <div>
-                <h3 className="text-white font-bold">{mockUser.name}</h3>
+                <h3 className="text-white font-bold">{mockUser.username}</h3>
                 <p className="text-white/60 text-sm">{mockUser.role}</p>
               </div>
             </div>
@@ -41,6 +41,7 @@ const ProfileAvatar = ({ isAuthenticated, mockUser, showProfileDropdown, setShow
               </button>
               <button 
                 onClick={() => {
+                  logout();
                   setIsAuthenticated(false);
                   setShowProfileDropdown(false);
                 }}

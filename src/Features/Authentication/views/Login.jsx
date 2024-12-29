@@ -15,8 +15,7 @@ const LoginModal = ({ setShowLoginModal, setShowSignupModal }) => {
   const [showVerifyForm, setShowVerifyForm] = useState(false); 
   const [showSuccessMessage, setShowSuccessMessage] = useState(false);
 
-  const authContext = useAuth(); // Ensure useAuth is correctly used
-  const { setAuthInfo } = authContext || {}; // Destructure setAuthInfo safely
+  const { authState, setAuthInfo } = useAuth(); // Ensure useAuth is correctly used
 
   const LoginHandler = async (e) => {
     e.preventDefault();
@@ -46,11 +45,12 @@ const LoginModal = ({ setShowLoginModal, setShowSignupModal }) => {
           //  Set authentication info
           setAuthInfo(token, payload);
           setShowLoginModal(false);
-
+          // payload['cognito:username']
+          console.log("------>>>>>>>>>>>>>",payload);
           setTimeout(() => {
             setLoading(false);
             setShowSuccessMessage(true);
-            setNotificationMsg('Successfully Signed in!'); // Set notification message
+            setNotificationMsg('Successfully Signed in!'); 
           }, 3000);
         } else {
           setErrorMessage("Token validation failed.");

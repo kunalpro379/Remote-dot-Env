@@ -1,0 +1,32 @@
+@keyframes randomGradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.shimmer {
+  background: linear-gradient(
+    135deg, /* Angle for bottom right to top left */
+    black, /* Start color at bottom right */
+    #201429, /* Dark Blue */
+    #111c36, /* Dark Blue */
+    #0a1f19 /* Dark Green */
+  );
+  background-size: 600% 600%;
+  animation: randomGradient 15s ease infinite;
+}
+
+.snap-container {
+  scroll-snap-type: y mandatory;
+  overflow-y: hidden; /* Prevent direct scrolling */
+}
+
+.snap-start {
+  scroll-snap-align: start;
+}

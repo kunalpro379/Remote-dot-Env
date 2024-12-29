@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { useAuth } from '../controllers/AuthContext.jsx';
-import { handleSignup, handleVerify } from '../controllers/AuthController.jsx';
-import User from '../model/user.model.jsx';
+import { useAuth } from '../controllers/AuthContext';
+import { handleSignup, handleVerify } from '../controllers/AuthController';
+import User from '../model/user.model';
 
 const AuthView = () => {
   const { login, logout } = useAuth();

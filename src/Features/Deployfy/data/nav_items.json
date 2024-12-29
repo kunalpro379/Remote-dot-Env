@@ -1,0 +1,13 @@
+{
+  "nav_items": [
+    { "id": "Projects", "label": "Projects" },
+    { "id": "Domains", "label": "Domains" },
+    { "id": "Usage", "label": "Usage" },
+    { "id": "Activity", "label": "Activity" },
+    { "id": "Setting", "label": "Setting" },
+    { "id": "Logs", "label": "Logs" },
+    { "id": "Billing", "label": "Billing" },
+    { "id": "Support", "label": "Support" },
+    { "id": "History", "label": "History" }
+  ]
+}
