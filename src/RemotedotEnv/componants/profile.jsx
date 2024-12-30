@@ -9,9 +9,13 @@ const ProfileAvatar = ({ logout, isAuthenticated, mockUser, showProfileDropdown,
       className={`w-16 h-16 rounded-full ${isAuthenticated ? 'bg-blue-500' : 'bg-purple-500'} 
         flex items-center justify-center hover:scale-110 hover:bg-blue-600 transition-all duration-300`}
     >
-      <span className="text-2xl font-bold text-white">
-        {isAuthenticated ? (mockUser.username ? mockUser.username[0] : "?") : "?"}
-      </span>
+      {isAuthenticated ? (
+        <span className="text-2xl font-bold text-white">
+          {mockUser.username ? mockUser.username[0].toUpperCase() : <User className="w-8 h-8" />}
+        </span>
+      ) : (
+        <User className="w-8 h-8 text-white" />
+      )}
     </button>
     
     {showProfileDropdown && (
@@ -22,7 +26,7 @@ const ProfileAvatar = ({ logout, isAuthenticated, mockUser, showProfileDropdown,
           <>
             <div className="flex items-center gap-4 mb-4 pb-4 border-b border-white/10">
               <div className="w-16 h-16 rounded-full bg-purple-500 flex items-center justify-center">
-                <span className="text-2xl font-bold text-white">{mockUser.username ? mockUser.username[0].toUpperCase() : "?"}</span>
+                <span className="text-2xl font-bold text-white">{mockUser.username ? mockUser.username[0].toUpperCase() : "Una"}</span>
               </div>
               <div>
                 <h3 className="text-white font-bold">{mockUser.username}</h3>

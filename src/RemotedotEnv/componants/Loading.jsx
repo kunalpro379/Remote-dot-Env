@@ -7,6 +7,7 @@ const Loading = () => {
         <div className="spinner spinner1"></div>
         <div className="spinner spinner2"></div>
         <div className="spinner spinner3"></div>
+        <div className='spineer spinner4'></div>
       </div>
       <style>{`
         .loader {
@@ -44,9 +45,9 @@ const Loading = () => {
         }
           .spinner4 {
           transform: rotate(240deg);
-                    border: 5px solid rgb(238, 255, 0);
+                    border: 5px solid rgba(51, 0, 0, 0.17);
 
-          border-radius: 2%;
+          border-radius: 5%;
         }
         @keyframes spin {
           to {

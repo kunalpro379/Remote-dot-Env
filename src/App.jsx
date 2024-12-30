@@ -7,7 +7,7 @@ import ProtectedRoute from './RemotedotEnv/routes/ProtectedRoute.jsx';
 import features from './RemotedotEnv/features.json'; // Import features
 
 import {
-  RemoteDesktop,
+  RemoteDesktopRoutes, // Note: Changed to RemoteDesktopRoutes
   Deployfy,
   FileSharing,
   PrivateCoding,
@@ -19,7 +19,7 @@ import {
 } from './Features/index.js'; // Ensure these are named exports
 
 const featureComponents = {
-  '/remote-desktop/*': RemoteDesktop,
+  '/remote-desktop/*': RemoteDesktopRoutes,  // Note: Changed to RemoteDesktopRoutes
   '/deployfy/*': Deployfy,
   '/file-sharing/*': FileSharing,
   '/private-coding/*': PrivateCoding,
@@ -40,7 +40,7 @@ function App() {
             {features.map((feature) => (
               <Route
                 key={feature.path}
-                path={`${feature.path}/*`}
+                path={`${feature.path}/*`}  // The /* is important for nested routes
                 element={<ProtectedRoute element={featureComponents[`${feature.path}/*`]} />}
               />
             ))}

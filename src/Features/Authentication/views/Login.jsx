@@ -4,7 +4,7 @@ import { handleSignin, handleToken } from "../controllers/AuthController";
 import LoginForm from "../componants/LoginForm";
 import { useAuth } from "../controllers/AuthContext";
 import SuccessMessage from "../componants/SuccessMessage"; // Ensure SuccessMessage is imported
-
+import Loading  from '../../../RemotedotEnv/componants/Loading';
 const LoginModal = ({ setShowLoginModal, setShowSignupModal }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -84,12 +84,14 @@ const LoginModal = ({ setShowLoginModal, setShowSignupModal }) => {
               <X className="w-6 h-6 text-white/80" />
             </button>
           </div>
-          {loading ? (
-            <div className="flex justify-center items-center h-64">
-              <div className="loader"></div>
-              <div className="text-white mt-4">Loading...</div> {/* Loading card */}
-            </div>
-          ) : (
+          {loading ? (<Loading />)
+          //  (
+          //   <div className="flex justify-center items-center h-64">
+          //     <div className="loader"></div>
+          //     <div className="text-white mt-4">Loading...</div> {/* Loading card */}
+          //   </div>
+          // ) 
+          : (
             <LoginForm
               username={username}
               setUsername={setUsername}

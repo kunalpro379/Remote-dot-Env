@@ -52,7 +52,7 @@ const HomePage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-black to-gray-900 relative">
+    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-black to-gray-900 relative ">
       {isLoading && <Loading />}
       {showError && (
         <div className="fixed top-0 left-0 w-full bg-red-500 text-white text-center py-2 z-50">
